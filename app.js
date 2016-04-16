@@ -23,6 +23,7 @@ function initMap() {
 
     var marker = new google.maps.Marker({
       position: here,
+      draggable: true,
       map: map,
       title: 'Here (Gilley\'s Dallas)'
     });
