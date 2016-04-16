@@ -32,9 +32,11 @@ function initMap() {
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
-    
+
     google.maps.event.addListener(map, 'click', function(event) {
         addMarker(event.latLng, map);
+        console.log(event.latLng.lat());
+        console.log(event.latLng.lng());
     });
 }
 
@@ -44,6 +46,20 @@ function addMarker(location, map) {
   // from the array of alphabetical characters.
   var marker = new google.maps.Marker({
     position: location,
-    map: map
+    map: map,
+    title: 'New Marker'
   });
+
+  // get lat/lng from location
+  var lat = location.lat(),
+      lng = location.lng();
+  // create a new infowindow, set content to location
+  var iwindow = new google.maps.InfoWindow({
+      content : (lat + ', ' + lng)
+  });
+  // attach click event on marker to openning infowindow
+  marker.addListener('click', function() {
+    iwindow.open(map, marker);
+  });
+
 }
