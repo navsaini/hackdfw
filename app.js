@@ -1,4 +1,6 @@
 
+var map;
+
 
 function initMap() {
 //  var directionsService = new google.maps.DirectionsService;
@@ -30,4 +32,18 @@ function initMap() {
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
+    
+    google.maps.event.addListener(map, 'click', function(event) {
+        addMarker(event.latLng, map);
+    });
+}
+
+
+function addMarker(location, map) {
+  // Add the marker at the clicked location, and add the next-available label
+  // from the array of alphabetical characters.
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
 }
