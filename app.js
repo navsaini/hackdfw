@@ -4,8 +4,7 @@ var markerRef;
 var winRef;
 
 function initMap() {
-//  var directionsService = new google.maps.DirectionsService;
-//  var directionsDisplay = new google.maps.DirectionsRenderer;
+
     var here = {lat: 33.0149231, lng: -96.9464376};
 
     var map = new google.maps.Map(document.getElementById('map'), {
