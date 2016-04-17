@@ -1,0 +1,19 @@
+{
+  "name": "hackdfw",
+  "version": "1.0.0",
+  "description": "Something to do with Google Maps.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navsaini/hackdfw.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/navsaini/hackdfw/issues"
+  },
+  "homepage": "https://github.com/navsaini/hackdfw#readme"
+}
