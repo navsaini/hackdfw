@@ -1,6 +1,7 @@
 
 var map;
-
+var markerRef;
+var winRef;
 
 function initMap() {
 //  var directionsService = new google.maps.DirectionsService;
@@ -22,6 +23,7 @@ function initMap() {
     var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
+    winRef = infowindow;
 
     var marker = new google.maps.Marker({
       position: here,
@@ -29,37 +31,43 @@ function initMap() {
       map: map,
       title: 'Here (Gilley\'s Dallas)'
     });
+    markerRef = marker;
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
 
     google.maps.event.addListener(map, 'click', function(event) {
         addMarker(event.latLng, map);
-        console.log(event.latLng.lat());
-        console.log(event.latLng.lng());
     });
 }
 
 
 function addMarker(location, map) {
-  // Add the marker at the clicked location, and add the next-available label
-  // from the array of alphabetical characters.
+  // remove old marker
+  markerRef.setMap(null);
   var marker = new google.maps.Marker({
     position: location,
     map: map,
     title: 'New Marker'
   });
+  markerRef = marker;
 
   // get lat/lng from location
   var lat = location.lat(),
       lng = location.lng();
-  // create a new infowindow, set content to location
-  var iwindow = new google.maps.InfoWindow({
-      content : (lat + ', ' + lng)
-  });
+
+  updateWindow(lat + ', ' + lng, map);
+
   // attach click event on marker to openning infowindow
   marker.addListener('click', function() {
-    iwindow.open(map, marker);
+    winRef.open(map, marker);
   });
+}
 
+function updateWindow(content, map) {
+    winRef.close();
+    var iwindow = new google.maps.InfoWindow({
+      content : content
+    });
+    winRef = iwindow;
 }
