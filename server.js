@@ -27,10 +27,29 @@ app.get("/", function (req, res) { res.send("This is the root route!"); });
 // Console will print the message
 console.log('Server running at http://127.0.0.1:8081/');
 
-var client = new Twitter({
-    "consumer_key": "ZHKt18fetYKVXlR4tCAmbWmXB",
-    "consumer_secret": "Ibck3UXLS1OqbsO52SbOi2S4DgjLAGyvpqMvetpXYnGCIP3Zoz",
-    "access_token_key": "1674563780-LOeIBhl6NdfmvpceIAEutVvMertK3Lrgikt9x1W",
-    "access_token_secret": "J29KxS9Qx8BlWVT0In6TfC0fA9XCSWFCENkAvqKpLa4sJ"
-});
+var error = function (err, response, body) {
+    console.log('ERROR [%s]', err);
+};
+var success = function (data) {
+    console.log('Data [%s]', data);
+};
+
+var Twitter = require('twitter-node-client').Twitter;
+
+var config = {
+    "consumer_key": "13JLJWql12hgPTtx6P0SMZtqV",
+    "consumer_secret": "vBUoWk2t65Ua3T0uV5JCM6BQ9tVJWduleJDC6PzEf62ZidUFTT",
+    "access_token_key": "3290333605-jxIJwCoN94s3rQQFszVarmn6w5dEgQbVrGLrS28",
+    "access_token_secret": "GkUSqpa6eh9c5dInB88KdJoRjt3mAbtgUu37qj2PvwLfc"
+};
+
+var twitter = new Twitter(config);
+
+//client.get('trends/closest', function(error, response) {
+//    console.log(response);
+//});
+
+twitter.getCustomApiCall('/trends/closest', error, success);
+
+    
 

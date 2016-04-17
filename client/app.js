@@ -57,10 +57,27 @@ function addMarker(location, map) {
 
   updateWindow(lat + ', ' + lng, map);
 
+  var response = $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: 'https://api.twitter.com/1.1/trends/closest.json?lat=37.781&long=-122.400',
+      jsonp: false
+  }).done(callback()); 
+    
+//    $.getJSON('trends/closest.json?lat=37.781157&long=-122.400612831116', function(data) {
+//        console.log(data);
+//    });
+    
+  console.log(response);
+    
   // attach click event on marker to openning infowindow
   marker.addListener('click', function() {
     winRef.open(map, marker);
   });
+}
+
+function callback() {
+    console.log('finished');
 }
 
 function updateWindow(content, map) {

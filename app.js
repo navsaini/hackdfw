@@ -56,6 +56,13 @@ function addMarker(location, map) {
       lng = location.lng();
 
   updateWindow(lat + ', ' + lng, map);
+    
+  $.ajax({
+      type: 'GET',
+      url: 'https://api.twitter.com/1.1/trends/closest.json?lat=' + lat + '&long=' + lng
+  }).done(function(data) {
+      console.log(data);
+  });
 
   // attach click event on marker to openning infowindow
   marker.addListener('click', function() {
